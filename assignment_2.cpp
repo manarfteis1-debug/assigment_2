@@ -38,3 +38,14 @@ int myAbs(int n) {
 int manhattan(int x1, int y1, int x2, int y2) {
     return myAbs(x1 - x2) + myAbs(y1 - y2);
 }
+
+// تحقق من خروج من الشبكة و برا جدار ام لا
+bool valid(int x, int y) {
+    if (x < 1 || x > SIZE || y < 1 || y > SIZE)
+        return false;
+
+    if (walls[y - 1][x - 1] == 1)
+        return false;
+
+    return true;
+}
