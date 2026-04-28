@@ -27,3 +27,14 @@ int coinY[4] = {1, 1, 5, 5};
 
 int fuelX = 3;
 int fuelY = 3;
+
+//  قيمة مطلقة 
+int myAbs(int n) { 
+    if (n < 0) return -n;
+    return n;
+}
+
+// تحسب ال h2 
+int manhattan(int x1, int y1, int x2, int y2) {
+    return myAbs(x1 - x2) + myAbs(y1 - y2);
+}
