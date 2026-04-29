@@ -150,3 +150,24 @@ void printPath(State allStates[], int index) {
     if (!goal(allStates[index]))
         cout << " -> ";
 }
+
+//تنشئ حالة جديدة بعد كل حركة 
+void makeChild(State current, State &child, int newX, int newY, int type, int parentIndex) {
+    child = current;
+
+    child.x = newX;
+    child.y = newY;
+    child.fuel = current.fuel - 1;
+    child.g = current.g + 1;
+    child.parent = parentIndex;
+
+    collectCoin(child);
+    refillFuel(child);
+
+    if (type == 1)
+        child.h = h1(child);
+    else
+        child.h = h2(child);
+
+    child.f = child.g + child.h;
+}
