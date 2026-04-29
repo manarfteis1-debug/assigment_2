@@ -107,3 +107,14 @@ int h2(State s) {
 
     return maxD;
 }
+
+// تمنع الكود ان يخش في حلقة لا نهائية 
+bool same(State a, State b) {
+    return a.x == b.x &&
+           a.y == b.y &&
+           a.fuel == b.fuel &&
+           a.c1 == b.c1 &&
+           a.c2 == b.c2 &&
+           a.c3 == b.c3 &&
+           a.c4 == b.c4;
+}
