@@ -171,3 +171,83 @@ void makeChild(State current, State &child, int newX, int newY, int type, int pa
 
     child.f = child.g + child.h;
 }
+
+//تطبيق خورزمية ال greedy
+void greedy(State start, int type) {
+    State allStates[MAX_STATES];
+    State visited[MAX_STATES];
+    int frontier[MAX_STATES];
+
+    int stateCount = 0;
+    int frontierCount = 0;
+    int visitedCount = 0;
+
+    if (type == 1)
+        start.h = h1(start);
+    else
+        start.h = h2(start);
+
+    start.f = start.h;   
+    start.parent = -1;
+
+    allStates[stateCount] = start;
+    frontier[frontierCount++] = stateCount;
+    stateCount++;
+
+    while (frontierCount > 0) {
+        int best = 0;
+//باش نختار الحالة الجاية
+        for (int i = 1; i < frontierCount; i++) {
+            if (allStates[frontier[i]].h < allStates[frontier[best]].h)
+                best = i;
+        }
+
+        int currentIndex = frontier[best];
+        State current = allStates[currentIndex];
+
+        for (int i = best; i < frontierCount - 1; i++)
+            frontier[i] = frontier[i + 1];
+
+        frontierCount--;
+// نتحقق من التكرار
+        if (visitedBefore(visited, visitedCount, current))
+            continue;
+
+        visited[visitedCount++] = current;
+
+        printState(current);
+
+        if (goal(current)) {
+            cout << "Goal Found (Greedy)" << endl;
+            cout << "Cost = " << current.g << endl;
+            cout << "Visited States = " << visitedCount << endl;
+            cout << "Path Solution: ";
+            printPath(allStates, currentIndex);
+            cout << endl;
+            return;
+        }
+//باش تتحددله الحركة انها فوق وتحت ويمين ويسار فقط
+        int dx[4] = {0, 0, -1, 1};
+        int dy[4] = {-1, 1, 0, 0};
+
+        for (int i = 0; i < 4; i++) {
+            int nx = current.x + dx[i];
+            int ny = current.y + dy[i];
+
+            if (valid(nx, ny) && current.fuel > 0) {
+                State child;
+                makeChild(current, child, nx, ny, type, currentIndex);
+
+                child.f = child.h;  // التصحيح المهم للـ Greedy
+
+                if (!visitedBefore(visited, visitedCount, child)) {
+                    allStates[stateCount] = child;
+                    frontier[frontierCount++] = stateCount;
+                    stateCount++;
+                }
+            }
+        }
+    }
+
+    cout << "No solution found by Greedy" << endl;
+}
