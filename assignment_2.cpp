@@ -69,3 +69,13 @@ bool goal(State s) {
     return s.x == 1 && s.y == 1 &&
            s.c1 && s.c2 && s.c3 && s.c4;
 }
+
+// تحسب في  (h) على حسب عدد العملات 
+int h1(State s) {
+    int count = 0;
+    if (!s.c1) count++;
+    if (!s.c2) count++;
+    if (!s.c3) count++;
+    if (!s.c4) count++;
+    return count;
+}
