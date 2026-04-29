@@ -49,3 +49,17 @@ bool valid(int x, int y) {
 
     return true;
 }
+
+// تشوف خدي العملة او لا 
+void collectCoin(State &s) {
+    if (s.x == coinX[0] && s.y == coinY[0]) s.c1 = true;
+    if (s.x == coinX[1] && s.y == coinY[1]) s.c2 = true;
+    if (s.x == coinX[2] && s.y == coinY[2]) s.c3 = true;
+    if (s.x == coinX[3] && s.y == coinY[3]) s.c4 = true;
+}
+
+// يشوف هل قام يتعبئة البنزين ام لا 
+void refillFuel(State &s) {
+    if (s.x == fuelX && s.y == fuelY)
+        s.fuel = MAX_FUEL;
+}
