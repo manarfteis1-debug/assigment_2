@@ -332,3 +332,50 @@ void a_star(State start, int type) {
     cout << "No solution found by A*" << endl;
 }
 
+int main() {
+    int x, y;
+
+    cout << "Enter start position x (1-5): ";
+    cin >> x;
+
+    cout << "Enter start position y (1-5): ";
+    cin >> y;
+
+    if (!valid(x, y)) {
+        cout << "Invalid position" << endl;
+        return 0;
+    }
+
+    State start;
+
+    start.x = x;
+    start.y = y;
+    start.fuel = MAX_FUEL;
+
+    start.c1 = false;
+    start.c2 = false;
+    start.c3 = false;
+    start.c4 = false;
+
+    start.g = 0;
+    start.h = 0;
+    start.f = 0;
+    start.parent = -1;
+
+    collectCoin(start);
+    refillFuel(start);
+
+    cout << "\nGreedy h1" << endl;
+    greedy(start, 1);
+
+    cout << "\nGreedy h2" << endl;
+    greedy(start, 2);
+
+    cout << "\nA* h1" << endl;
+    a_star(start, 1);
+
+    cout << "\nA* h2" << endl;
+    a_star(start, 2);
+
+    return 0;
+}
