@@ -79,3 +79,31 @@ int h1(State s) {
     if (!s.c4) count++;
     return count;
 }
+
+// تحسب مجموع المسافة من مكان الاعب الى العمل يلي مش واخدينها
+int h2(State s) {
+    int maxD = 0;
+    int d;
+
+    if (!s.c1) {
+        d = manhattan(s.x, s.y, coinX[0], coinY[0]);
+        if (d > maxD) maxD = d;
+    }
+
+    if (!s.c2) {
+        d = manhattan(s.x, s.y, coinX[1], coinY[1]);
+        if (d > maxD) maxD = d;
+    }
+
+    if (!s.c3) {
+        d = manhattan(s.x, s.y, coinX[2], coinY[2]);
+        if (d > maxD) maxD = d;
+    }
+
+    if (!s.c4) {
+        d = manhattan(s.x, s.y, coinX[3], coinY[3]);
+        if (d > maxD) maxD = d;
+    }
+
+    return maxD;
+}
