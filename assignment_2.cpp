@@ -127,3 +127,26 @@ bool visitedBefore(State visited[], int count, State s) {
     }
     return false;
 }
+
+//تطبع الحالات بالمعلومات يلي فيهم 
+void printState(State s) {
+    cout << "(" << s.x << "," << s.y << ") ";
+    cout << "Fuel=" << s.fuel << " ";
+    cout << "Coins=[" << s.c1 << s.c2 << s.c3 << s.c4 << "] ";
+    cout << "g=" << s.g << " ";
+    cout << "h=" << s.h << " ";
+    cout << "f=" << s.f << endl;
+}
+
+//نطبع المسار النهائي من البداية للهدف 
+void printPath(State allStates[], int index) {
+    if (index == -1)
+        return;
+
+    printPath(allStates, allStates[index].parent);
+
+    cout << "(" << allStates[index].x << "," << allStates[index].y << ")";
+
+    if (!goal(allStates[index]))
+        cout << " -> ";
+}
