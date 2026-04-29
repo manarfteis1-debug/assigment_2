@@ -63,3 +63,9 @@ void refillFuel(State &s) {
     if (s.x == fuelX && s.y == fuelY)
         s.fuel = MAX_FUEL;
 }
+
+// يشوف وصلنا للهدف ام لا
+bool goal(State s) {
+    return s.x == 1 && s.y == 1 &&
+           s.c1 && s.c2 && s.c3 && s.c4;
+}
