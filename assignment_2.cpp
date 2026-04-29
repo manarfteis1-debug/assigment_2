@@ -118,3 +118,12 @@ bool same(State a, State b) {
            a.c3 == b.c3 &&
            a.c4 == b.c4;
 }
+
+// تشوف الحالة الحالية مع الحالات يلي زارتهم من قبل هل موجوده ام لا  
+bool visitedBefore(State visited[], int count, State s) {
+    for (int i = 0; i < count; i++) {
+        if (same(visited[i], s))
+            return true;
+    }
+    return false;
+}
