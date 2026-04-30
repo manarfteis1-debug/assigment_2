@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
 
-const int SIZE = 3; 
+const int SIZE = 5; 
 const int MAX_FUEL = 20; 
 const int MAX_STATES = 20000; //اقصى حد للحالات 
 
@@ -14,17 +14,19 @@ struct State {
 };
 
 // الخدمات التابة في اللعبة 
-int walls[3][3] = { 
-    {0,0,0},
-    {0,1,0},
-    {0,0,0}
+int walls[5][5] = {
+    {0,0,0,0,0},
+    {0,1,1,1,0},
+    {0,0,0,1,0},
+    {0,1,0,0,0},
+    {0,0,0,1,0}
 };
 
-int coinX[4] = {1, 3, 1, 3};
-int coinY[4] = {1, 1, 3, 3};
+int coinX[4] = {1, 5, 1, 5};
+int coinY[4] = {1, 1, 5, 5};
 
 int fuelX = 3;
-int fuelY = 2;
+int fuelY = 3;
 
 //  قيمة مطلقة 
 int myAbs(int n) { 
@@ -333,10 +335,10 @@ void a_star(State start, int type) {
 int main() {
     int x, y;
 
-    cout << "Enter start position x (1-3): ";
+    cout << "Enter start position x (1-5): ";
     cin >> x;
 
-    cout << "Enter start position y (1-3): ";
+    cout << "Enter start position y (1-5): ";
     cin >> y;
 
     if (!valid(x, y)) {
